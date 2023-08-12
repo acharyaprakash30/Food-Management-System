@@ -61,13 +61,13 @@ const CartSummary = ({ shopMealNow }) => {
         >
           Back to Shopping
         </motion.button>
-        {/* <motion.button
+        <motion.button
           {...btnClick}
           className="  bg-blue-800  sm:font-semibold pr-6 pl-3 sm:pl-3 sm:pr-8 py-2 text-gray-200 hover:bg-blue-700 font-medium sm:tracking-wide rounded-r-full"
           onClick={handleOrder}
         >
           Proceed to Order
-        </motion.button> */}
+        </motion.button>
       </p>
     </section>
   );

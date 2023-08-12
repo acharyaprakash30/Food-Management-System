@@ -1,9 +1,12 @@
+import { createSlice } from "@reduxjs/toolkit";
+import {  getUserAllOrder,updateOrderStatus } from "./orderAction";
+
+
 const initialState = {
     loading: false,
     error: null,
     success: false,
-    userOrders,
-
+    userOrders:[]
 };
 
 const orderSlice = createSlice({
@@ -25,6 +28,58 @@ const orderSlice = createSlice({
         },
     },
     extraReducers: {
+            //create Product
+            [getUserAllOrder.fulfilled]: (state, { payload }) => {
+                console.log("payload of data",payload,state);
+                // console.log(state);
+                state.error = null;
+                state.success = true;
+                state.userOrders = payload;
+                state.loading = false
+    
+            },
+            [getUserAllOrder.pending]: (state) => {
+    
+                state.loading = true;
+                state.error = null;
+                state.success = false
+    
+    
+            },
+            [getUserAllOrder.rejected]: (state, { payload }) => {
+                state.error = payload
+                state.loading = false
+                // console.log(state);
+                state.success = false;
+    
+    
+            },
+
+                //create Product
+                [updateOrderStatus.fulfilled]: (state, { payload }) => {
+                    // console.log(state);
+                    state.error = null;
+                    state.success = true;
+                    state.loading = false
+        
+                },
+                [updateOrderStatus.pending]: (state) => {
+        
+                    state.loading = true;
+                    state.error = null;
+                    state.success = false
+        
+        
+                },
+                [updateOrderStatus.rejected]: (state, { payload }) => {
+                    state.error = payload
+                    state.loading = false
+                    // console.log(state);
+                    state.success = false;
+        
+        
+                },
+
 
     },
 });

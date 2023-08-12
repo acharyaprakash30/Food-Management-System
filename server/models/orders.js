@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       orders.belongsTo(models.users);
-
       orders.belongsToMany(models.items, { through: models.orderItems, onDelete: 'CASCADE' });
 
     }

@@ -21,10 +21,10 @@ const checkAuthentication = async (req, res, next) => {
     try {
         // console.log('------1-');
         const decodedUser = jwt.verify(req.headers.authorization.split(" ")[1], 'thisismysecretcode')
-        // console.log(decodedUser);
+        console.log(decodedUser);
         console.log('next auth');
+        req.userData = decodedUser
         next()
-
 
     }
     catch (error) {

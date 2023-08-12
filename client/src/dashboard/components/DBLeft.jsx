@@ -17,7 +17,7 @@ const DBLeft = () => {
 
             <ul className='flex flex-col gap-4' >
                 <NavLink className={({ isActive }) => isActive ? `${isActiveStyles} px-4 py-2 border-l-8 border-red-500` : isNotActiveStyles} to={'/dashboard/home'}>Home</NavLink>
-                <NavLink className={({ isActive }) => isActive ? `${isActiveStyles} px-4 py-2 border-l-8 border-red-500` : isNotActiveStyles} to={'/dashboard/orders'}>Orders</NavLink>
+                {/* <NavLink className={({ isActive }) => isActive ? `${isActiveStyles} px-4 py-2 border-l-8 border-red-500` : isNotActiveStyles} to={'/dashboard/orders'}>Orders</NavLink> */}
                 <NavLink className={({ isActive }) => isActive ? `${isActiveStyles} px-4 py-2 border-l-8 border-red-500` : isNotActiveStyles} to={'/dashboard/items'}>Items</NavLink>
                 <NavLink className={({ isActive }) => isActive ? `${isActiveStyles} px-4 py-2 border-l-8 border-red-500` : isNotActiveStyles} to={'/dashboard/addnewitems'}>Add new items</NavLink>
                 <NavLink className={({ isActive }) => isActive ? `${isActiveStyles} px-4 py-2 border-l-8 border-red-500` : isNotActiveStyles} to={'/dashboard/users'}>Users</NavLink>

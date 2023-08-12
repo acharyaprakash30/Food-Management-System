@@ -35,7 +35,7 @@ const Header = () => {
       </NavLink>
 
       <nav className="flex items-center justify-center gap-8">
-        <nav className="hidden md:flex items-center justify-center gap-16 font-sans">
+        <nav className="hidden md:flex items-center justify-center gap-5 font-sans">
           <NavLink
             className={({ isActive }) =>
               isActive ? isActiveStyles : isNotActiveStyles
@@ -52,14 +52,14 @@ const Header = () => {
           >
             Menu
           </NavLink>
-          <NavLink
+          {/* <NavLink
             className={({ isActive }) =>
               isActive ? isActiveStyles : isNotActiveStyles
             }
             to={"/contact"}
           >
             Contact
-          </NavLink>
+          </NavLink> */}
         </nav>
 
         {userData?.role && localStorage.getItem("userToken") && (
