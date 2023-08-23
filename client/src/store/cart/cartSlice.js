@@ -42,8 +42,12 @@ const cartSlice = createSlice({
       // console.log(state.cartItems);
       if (payload && state.error === null) {
         // console.log(state.error);
-        state.totalQuantity = state.totalQuantity + 1;
+        // state.totalQuantity = state.totalQuantity + 1;
         // console.log(state.totalQuantity);
+        // state.totalQuantity = state.cartItems.reduce((total, item) => {
+        //   return total + item.quantity;
+        // }, 0);
+
       } else if (state.cartItems.length >= 0) {
         // console.log('here');
         state.totalQuantity = state.cartItems.reduce((total, item) => {
@@ -69,7 +73,9 @@ const cartSlice = createSlice({
 
   extraReducers: {
     [addToCart.fulfilled]: (state, { payload }) => {
+      console.log("====================payload",payload);
       state.success = payload.item;
+      state.totalQuantity = state.totalQuantity + payload.quantity;
       state.error = null;
       state.loading = false;
     },

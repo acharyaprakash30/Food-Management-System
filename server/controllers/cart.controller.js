@@ -4,13 +4,14 @@ const models = require('../models')
 
 
 const addItemToCart = async (req, res) => {
-    const { userId, itemId } = req.body;
+    const { userId, itemId,quantity } = req.body;
     try {
         let cartExists = await models.cart.findOne({
             where: {
                 userId: userId
             }
         });
+
         const getItem = await models.items.findByPk(itemId, { attributes: ['name'] })
         // console.log(getItem);
 
@@ -27,7 +28,7 @@ const addItemToCart = async (req, res) => {
                     {
                         cartId: newCart.id,
                         itemId: itemId,
-                        quantity: 1,
+                        quantity: quantity,
                     },
                     { transaction }
                 );
@@ -36,14 +37,14 @@ const addItemToCart = async (req, res) => {
                 // console.log(getItem);
 
                 return res.status(201).json({
-                    item: getItem.name
+                    item: getItem.name,
+                    quantity:quantity
                 })
             });
         }
         else {
             const itemInCart = await models.cartItem.findOne({
                 where: { cartId: cartExists.id, itemId: itemId },
-
             })
 
 
@@ -55,18 +56,18 @@ const addItemToCart = async (req, res) => {
 
                 return incrementQuantity(req, res)
             } else {
-                console.log('here');
                 await models.cartItem.create(
                     {
                         cartId: cartExists.id,
                         itemId: itemId,
-                        quantity: 1,
+                        quantity: quantity,
                     }
                 );
 
                 return res.status(201).json(
                     {
-                        item: getItem.name
+                        item: getItem.name,
+                        quantity:quantity
                     }
                 );
             }
@@ -123,6 +124,7 @@ const incrementQuantity = async (req, res) => {
                 },
             });
             return res.status(200).json({
+                quantity:1,
                 message: "Quantity updated successfully."
             })
         } else {
